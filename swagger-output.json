@@ -5,10 +5,10 @@
     "description": "PhonePe Backend System API Documentation",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "phonepe-backend-system-1.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
