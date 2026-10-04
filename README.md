@@ -22,6 +22,8 @@ This project demonstrates practical experience with:
 - API testing with Postman
 - Environment-based configuration
 - Backend security practices
+
+
 ## 📡 API Endpoints
 
 ### Authentication
@@ -48,6 +50,9 @@ This project demonstrates practical experience with:
 
 
 Interactive API docs (Swagger UI): https://phonepe-backend-system-1.onrender.com/api-docs
+
+
+
 ## 🔑 Authentication
 
 The authentication flow consists of registration, login, JWT generation, and protected routes.
@@ -93,6 +98,8 @@ Authorization: Bearer <JWT>
 ```
 
 The `protect` middleware verifies the token and attaches the authenticated user's information to the request before the protected controller is executed.
+
+
 ## 🔒 Security
 
 The project includes the following security measures:
@@ -104,6 +111,9 @@ The project includes the following security measures:
 - Environment variables for sensitive configuration
 - `.env` excluded from Git
 - JWT verification before accessing protected resources
+
+
+
 ## 📁 Project Structure
 ```
 PHONEPE_BACKEND_SYSTEM/
@@ -138,6 +148,7 @@ PHONEPE_BACKEND_SYSTEM/
         ├── walletRoutes.js
         └── transactionRoute.js
 ```
+
 ## Architecture
 
 The project separates responsibilities across different layers:
@@ -150,6 +161,8 @@ The project separates responsibilities across different layers:
 - **server.js** — Application entry point
 - **swagger.js** — Swagger/OpenAPI documentation setup
 - - **.env** — Environment variables (not committed to Git)
+
+
 ## 🏗️ Request Architecture
 
 ```
@@ -194,6 +207,8 @@ MongoDB
           ↓
 JSON Response
 ```
+
+
 ## 🗄️ Database
 
 The application uses MongoDB with Mongoose for data modeling and database operations.
@@ -224,6 +239,8 @@ Transaction
 ```
 
 User and transaction data are persisted in MongoDB.
+
+
 ## 🧪 API Testing
 
 The APIs are tested using Postman during development.
@@ -257,6 +274,8 @@ POST /api/auth/login
 ```
 
 The login response provides the JWT used for authenticated API requests.
+
+
 
 ## ⚙️ Getting Started
 
@@ -293,6 +312,9 @@ node server.js
 ```
 
 The server runs on `http://localhost:3000`
+
+
+
 ## 🔐 Environment Configuration
 
 Create a `.env` file in the project root:
@@ -310,6 +332,10 @@ JWT_SECRET=your_jwt_secret
 | `JWT_SECRET` | Secret used for JWT signing and verification |
 
 > The `.env` file is excluded from Git using `.gitignore` to prevent sensitive configuration values from being committed to the repository.
+
+
+
+
 ## 👨‍💻 Author
 
 **Jakky Faisal**
@@ -318,47 +344,3 @@ Backend project developed to practice designing and implementing RESTful APIs us
 
 - GitHub: [@jakkyfaisal88](https://github.com/jakkyfaisal88)
 - LinkedIn: Jakky Faisal : Coming Soon
-## 🏗️ Request Architecture
-
-```
-Client
-  │
-  ▼
-Express Server
-  │
-  ▼
-Routes
-  │
-  ▼
-Authentication Middleware
-  │
-  ▼
-Controllers
-  │
-  ▼
-Mongoose Models
-  │
-  ▼
-MongoDB
-  │
-  ▼
-Response
-```
-
-### Example: Wallet Request
-
-```
-POST /api/wallet/add-money
-          ↓
-walletRoutes.js
-          ↓
-protect.js
-          ↓
-walletController.js
-          ↓
-User.js
-          ↓
-MongoDB
-          ↓
-JSON Response
-```
