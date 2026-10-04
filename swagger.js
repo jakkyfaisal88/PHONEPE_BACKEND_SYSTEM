@@ -6,7 +6,7 @@ const doc = {
         title: 'PhonePe Backend API',
         description: 'PhonePe Backend System API Documentation'
     },
-    host: 'phonepe-backend-system-1.onrender.com',
+    host: 'phonepe-backend-system-4.onrender.com',
     schemes: ['https']
 };
 
