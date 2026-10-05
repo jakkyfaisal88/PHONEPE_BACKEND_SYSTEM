@@ -1,23 +1,23 @@
-const swaggerAutogen = require('swagger-autogen')();
-
+const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
 
 const doc = {
     info: {
         title: 'PhonePe Backend API',
         description: 'PhonePe Backend System API Documentation'
     },
-    host: 'phonepe-backend-system-4.onrender.com',
-    schemes: ['https'],
-    securityDefinitions: {
-        bearerAuth: {
-            type: 'apiKey',
-            in: 'header',
-            name: 'Authorization',
-            description: 'Format: Bearer <token>'
+    servers: [
+        { url: 'https://phonepe-backend-system-4.onrender.com' }
+    ],
+    components: {
+        securitySchemes: {
+            bearerAuth: {
+                type: 'http',
+                scheme: 'bearer',
+                bearerFormat: 'JWT'
+            }
         }
     }
 };
-
 
 const outputFile = './swagger-output.json';
 const endpointsFiles = ['./server.js'];

@@ -13,7 +13,7 @@ const generateToken = (id) => {
   );
 };
 
- 
+
 const registerUser = async (req, res) => {
   try {
     const { name, email, phone, password } = req.body;
@@ -22,18 +22,18 @@ const registerUser = async (req, res) => {
       $or: [{ email }, { phone }]
     });
 
-    if (userExists) {                       
+    if (userExists) {
       return res.status(400).json({
         message: "User already exists"
       });
     }
 
 
-   
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const username = email.toLowerCase().split("@")[0]; 
+    const username = email.toLowerCase().split("@")[0];
     const upiId = `${username}@phonepe`;
 
 
@@ -70,7 +70,7 @@ const registerUser = async (req, res) => {
 
 
 
-    
+
 // ------LOGIN -------------------
 
 const loginUser = async (req, res) => {
@@ -137,39 +137,41 @@ const loginUser = async (req, res) => {
 
 //--------------------MPIN Set-----------------------
 
-const setupMpin = async(req, res) => {
+const setupMpin = async (req, res) => {
   //Implementation for setupMpin
   // #swagger.security = [{ "bearerAuth": [] }]
+  // #swagger.autoHeaders = false
   const { mpin } = req.body;
-  if(!mpin || mpin.length !== 4){
-      return res.status(400).json({message: 'please provide a valid 4 digit MPIN '});
+  if (!mpin || mpin.length !== 4) {
+    return res.status(400).json({ message: 'please provide a valid 4 digit MPIN ' });
   }
 
-  const salt = await bcrypt.genSalt(10);  
+  const salt = await bcrypt.genSalt(10);
   const hashedMpin = await bcrypt.hash(mpin, salt);
-    
-  const user = await User.findByIdAndUpdate(req.user._id, { mpin: hashedMpin },{new: true});
 
-  if( user ) {
-    res.json({ message: 'MPIN SET SUCCESSFULLY'});
+  const user = await User.findByIdAndUpdate(req.user._id, { mpin: hashedMpin }, { new: true });
+
+  if (user) {
+    res.json({ message: 'MPIN SET SUCCESSFULLY' });
   } else {
-     res.status(400).json({message: 'Failed to set Mpin'});
+    res.status(400).json({ message: 'Failed to set Mpin' });
   }
 }
 
 
 
 //Get User Profile
-const getUserProfile = async(req, res) => {
+const getUserProfile = async (req, res) => {
   // #swagger.security = [{ "bearerAuth": [] }]
+  // #swagger.autoHeaders = false
   const user = await User.findById(req.user._id).select('-password -mpin');//hmne user ko find kiya and uske pura data la ke wapas se vj diya
-  if(user){
-     res.json(user);
-  }else {
-    res.status(400).json({ message: 'User not found'});
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(400).json({ message: 'User not found' });
   }
 };
 
 
 
-module.exports = {registerUser,loginUser,setupMpin,getUserProfile};
+module.exports = { registerUser, loginUser, setupMpin, getUserProfile };

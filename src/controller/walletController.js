@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 
 const addMoney = async (req, res) => {
     // #swagger.security = [{ "bearerAuth": [] }]
+    // #swagger.autoHeaders = false
     try {
         const { amount, mpin } = req.body;
         const userId = req.user._id;
@@ -75,6 +76,7 @@ const addMoney = async (req, res) => {
 
 const payBill = async (req, res) => {
     // #swagger.security = [{ "bearerAuth": [] }]
+    // #swagger.autoHeaders = false
     try {
         const { billerName, amount, mpin } = req.body;
         const userId = req.user._id;
