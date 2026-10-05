@@ -140,7 +140,7 @@ const loginUser = async (req, res) => {
 const setupMpin = async (req, res) => {
   //Implementation for setupMpin
   // #swagger.security = [{ "bearerAuth": [] }]
-  // #swagger.autoHeaders = false
+  // #swagger.parameters['authorization'] = { in: 'header', schema: {} }
   const { mpin } = req.body;
   if (!mpin || mpin.length !== 4) {
     return res.status(400).json({ message: 'please provide a valid 4 digit MPIN ' });
@@ -163,7 +163,7 @@ const setupMpin = async (req, res) => {
 //Get User Profile
 const getUserProfile = async (req, res) => {
   // #swagger.security = [{ "bearerAuth": [] }]
-  // #swagger.autoHeaders = false
+  // #swagger.parameters['authorization'] = { in: 'header', schema: {} }
   const user = await User.findById(req.user._id).select('-password -mpin');//hmne user ko find kiya and uske pura data la ke wapas se vj diya
   if (user) {
     res.json(user);
