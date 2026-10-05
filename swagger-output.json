@@ -121,10 +121,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "in": {
-                    "example": "any"
-                  },
-                  "schema": {
+                  "mpin": {
                     "example": "any"
                   }
                 }
@@ -186,10 +183,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "in": {
+                  "phone": {
                     "example": "any"
                   },
-                  "schema": {
+                  "amount": {
+                    "example": "any"
+                  },
+                  "mpin": {
                     "example": "any"
                   }
                 }
@@ -251,10 +251,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "in": {
+                  "billerName": {
                     "example": "any"
                   },
-                  "schema": {
+                  "amount": {
+                    "example": "any"
+                  },
+                  "mpin": {
                     "example": "any"
                   }
                 }
@@ -295,10 +298,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "in": {
+                  "amount": {
                     "example": "any"
                   },
-                  "schema": {
+                  "mpin": {
                     "example": "any"
                   }
                 }
