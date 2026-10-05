@@ -18,16 +18,18 @@ try {
 
 // sabse pahkle yehi middleware chalenge //ab jo v request ayegi usse hmara app samajh payega
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: "https://phonepe-backend-system-4.onrender.com"
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended:true}));
+app.use(express.urlencoded({ extended: true }));
 
 
 connectDB();
 const port = process.env.PORT || 3000;
 
 
-app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument)
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)
 );  //jo v swagger pe mai data dalunga usse ye setup krke endpoint pe ye serve kr dega  
 
 
