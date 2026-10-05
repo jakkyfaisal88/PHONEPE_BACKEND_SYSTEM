@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
-//yehan hum token bna rahe hai 
+
 const generateToken = (id) => {
   return jwt.sign(
     { id },                          //. Bhai, token banane ka main reason hai: server ko pata chale ki request kis logged-in user ki hai.
@@ -22,23 +22,23 @@ const registerUser = async (req, res) => {
       $or: [{ email }, { phone }]
     });
 
-    if (userExists) {                           //actually indirectly check kar raha hai:
+    if (userExists) {                       
       return res.status(400).json({
         message: "User already exists"
       });
     }
 
 
-    //ab password ko hashed kr rahe hai if DB leak ho gya to password leak na ho koi access na kr paye
+   
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const username = email.toLowerCase().split("@")[0];   //ek sanitized upi id bny
-    const upiId = `${username}@phonepe`; //to isliye Email jo dalte hai usi me se upiId bnta hai .....
+    const username = email.toLowerCase().split("@")[0]; 
+    const upiId = `${username}@phonepe`;
 
 
     //Ab actual database insertion
-    const user = await User.create({ //uss model ko pkd ke data insert kr rahe hai 
+    const user = await User.create({
       name,
       email,
       phone,
@@ -139,12 +139,13 @@ const loginUser = async (req, res) => {
 
 const setupMpin = async(req, res) => {
   //Implementation for setupMpin
+  // #swagger.security = [{ "bearerAuth": [] }]
   const { mpin } = req.body;
-  if(!mpin || mpin.length !== 4){ //mpin nhi hai ya 4 digit se km hai to failed
+  if(!mpin || mpin.length !== 4){
       return res.status(400).json({message: 'please provide a valid 4 digit MPIN '});
   }
 
-  const salt = await bcrypt.genSalt(10);  //isko v hashed karenge ki 
+  const salt = await bcrypt.genSalt(10);  
   const hashedMpin = await bcrypt.hash(mpin, salt);
     
   const user = await User.findByIdAndUpdate(req.user._id, { mpin: hashedMpin },{new: true});
@@ -160,6 +161,7 @@ const setupMpin = async(req, res) => {
 
 //Get User Profile
 const getUserProfile = async(req, res) => {
+  // #swagger.security = [{ "bearerAuth": [] }]
   const user = await User.findById(req.user._id).select('-password -mpin');//hmne user ko find kiya and uske pura data la ke wapas se vj diya
   if(user){
      res.json(user);

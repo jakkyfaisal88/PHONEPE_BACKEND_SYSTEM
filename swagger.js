@@ -7,7 +7,15 @@ const doc = {
         description: 'PhonePe Backend System API Documentation'
     },
     host: 'phonepe-backend-system-4.onrender.com',
-    schemes: ['https']
+    schemes: ['https'],
+    securityDefinitions: {
+        bearerAuth: {
+            type: 'apiKey',
+            in: 'header',
+            name: 'Authorization',
+            description: 'Format: Bearer <token>'
+        }
+    }
 };
 
 

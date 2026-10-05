@@ -1,5 +1,4 @@
-//isme Do chij honge Pay Bill, & Add Money  
-//Bank Account se wallet me Money add kr sakte hai //iske liye DB nhi chahiye qki..Transaction me hi add kr diya hai (enum) me hai 
+//There will be two features: Pay Bill and Add Money. Users can add money to their wallet from their bank account.
 const express = require('express');
 const router = express.Router();
 

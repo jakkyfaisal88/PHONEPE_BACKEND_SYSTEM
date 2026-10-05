@@ -6,7 +6,7 @@ const connectDB = require('./src/config/db');
 const authRoutes = require('./src/routes/authRoutes');
 const swaggerUi = require('swagger-ui-express');
 
-// Swagger document -jo ki swagger ki sari document rakhti hai  
+
 let swaggerDocument = {};
 
 try {
@@ -16,7 +16,7 @@ try {
 }
 
 
-// sabse pahkle yehi middleware chalenge //ab jo v request ayegi usse hmara app samajh payega
+
 const app = express();
 app.use(cors({
     origin: "https://phonepe-backend-system-4.onrender.com"
@@ -30,12 +30,12 @@ const port = process.env.PORT || 3000;
 
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)
-);  //jo v swagger pe mai data dalunga usse ye setup krke endpoint pe ye serve kr dega  
+);   
 
 
 app.get('/', (req, res) => {
     res.send('PhonePe Backend System is Running');
-});  //this is test Is it running
+}); 
 
 
 app.use('/api/auth', authRoutes);

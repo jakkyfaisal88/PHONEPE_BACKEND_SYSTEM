@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 // @access Private
 
 const addMoney = async (req, res) => {
+    // #swagger.security = [{ "bearerAuth": [] }]
     try {
         const { amount, mpin } = req.body;
         const userId = req.user._id;
@@ -73,6 +74,7 @@ const addMoney = async (req, res) => {
 // @access Private
 
 const payBill = async (req, res) => {
+    // #swagger.security = [{ "bearerAuth": [] }]
     try {
         const { billerName, amount, mpin } = req.body;
         const userId = req.user._id;

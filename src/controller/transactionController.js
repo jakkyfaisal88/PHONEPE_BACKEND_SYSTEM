@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 //@route Post /api /transaction/send
 //@access Private
 const sendMoney = async (req, res) => {
+    // #swagger.security = [{ "bearerAuth": [] }]
     try {
         const { phone, amount, mpin } = req.body;
         const senderId = req.user._id;
@@ -73,6 +74,7 @@ const sendMoney = async (req, res) => {
 
 
 const getTransactionHistory = async (req, res) => {
+    // #swagger.security = [{ "bearerAuth": [] }]
     try {
         const userId = req.user._id;
 
